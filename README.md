@@ -1,6 +1,6 @@
 # Generally useful scripts
 
-This repository contains generally useful Python scripts that can a myriad of things. These are scripts that are more stand alone in nature and don't constitute having their own repository, but I wanted them easy to get access to, track changes.
+This repository contains generally useful Python scripts that can do a myriad of things. These are scripts that are more stand alone in nature and don't constitute having their own repository, but I wanted them easy to get access to, track changes.
 
 ## Project Bootstrap
 
@@ -10,7 +10,7 @@ This repository contains generally useful Python scripts that can a myriad of th
 
 ### Description
 
-This script is for automating the creation of a new Python project that has been initilized by `uv`. This script is to fill a need that I had to not copy my preferred settings files and starting point by hand. Since `uv` does not allow a way to override or specify versions of files, or additional files to include, this provides a way to do just tyat.
+This script is for automating the creation of a new Python project that has been initilized by `uv`. This script is to fill a need that I had to not copy my preferred settings files and starting point by hand. Since `uv` does not allow a way to override or specify versions of files, or additional files to include, this provides a way to do just that.
 
 The bottom of this script contains a data structure that allows for additional files to be added, existing files to be overwritten with content, and/or files to be defaulted in from other locations should they exist.
 
