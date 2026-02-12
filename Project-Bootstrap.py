@@ -7,6 +7,12 @@
    Notes: Scripting to import/replace uv default files so I do not have to do it by hand.
    TODO: Add comments and clean up code. Large swaths of this are basically AI generated and only briefly tested.
 
+  Copyright (c) 2026 Andrew Dixon
+
+   This file is part of Useful_Scripts.
+   Licensed under the GNU Lesser General Public License v2.1.
+   See the LICENSE file at the project root for details.
+
 ........1.........2.........3.........4.........5.........6.........7.........8.........9.........0.........1.........2.........3..
 """
 
