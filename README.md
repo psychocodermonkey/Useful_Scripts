@@ -88,3 +88,10 @@ Script that generates a magic pack to be broadscast to wake a machine that is wa
 ### Usage
 
 Modify `BROADCAST` and `SYSTEM` at the top of the script with the broadcast address of your network. (EX: `192.168.1.255`) and the MAC address of the machine you want to start. Be sure that the MAC address used is the MAC address that is enabled for wake-on-lan and not a secondary network interface. Be sure that wake-on-lan is enabled on the device and it is functioning.
+
+---
+  Copyright (c) 2026 Andrew Dixon
+
+  This file is part of Useful_Scripts.
+  Licensed under the GNU Lesser General Public License v2.1.
+  See the LICENSE file at the project root for details.
