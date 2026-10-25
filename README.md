@@ -89,6 +89,33 @@ Script that generates a magic pack to be broadscast to wake a machine that is wa
 
 Modify `BROADCAST` and `SYSTEM` at the top of the script with the broadcast address of your network. (EX: `192.168.1.255`) and the MAC address of the machine you want to start. Be sure that the MAC address used is the MAC address that is enabled for wake-on-lan and not a secondary network interface. Be sure that wake-on-lan is enabled on the device and it is functioning.
 
+## Generate Repo Statistics Report
+
+### File
+
+- [`Gen-Repo-Stats.py`](Gen-Repo-Stats.py)
+
+### Description
+
+This script generates a Markdown report of the repository's local branches and commit history. It lists the active branch, the number of commits reachable from each local branch, the total number of distinct commits across those branches, and the selected commits in oldest-first topological order. The development time shown in the report spans the earliest and latest author dates of the selected commits.
+
+By default, the report includes commits reachable from all local branches except the initial repository commit. You can narrow the history to one branch or start at a specific commit with the flags below.
+
+### Usage
+
+Run the script from the command line. It reads the Git repository containing the script and writes `Commit-History.md` to your current working directory unless you specify another output path.
+
+``` bash
+python3 Gen-Repo-Stats.py
+python3 Gen-Repo-Stats.py --branch BRANCH_NAME
+python3 Gen-Repo-Stats.py --commit COMMIT_HASH
+python3 Gen-Repo-Stats.py --branch BRANCH_NAME --commit COMMIT_HASH --output report.md
+```
+
+- `--branch BRANCH_NAME` includes commits reachable from that local branch, including commits brought in by merges.
+- `--commit COMMIT_HASH` includes the named commit and its descendants reachable from the selected branch, or from any local branch when `--branch` is omitted. The commit must be reachable from the selected history.
+- `--output PATH` writes the report to the specified path instead of `Commit-History.md`.
+
 ---
   Copyright (c) 2026 Andrew Dixon
 
