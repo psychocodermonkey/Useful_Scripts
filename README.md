@@ -83,11 +83,19 @@ This is a good example of leveraging `os` to get info from the environemnt.
 
 ### Description
 
-Script that generates a magic pack to be broadscast to wake a machine that is wake-on-lan enabled.
+Script that sends a Wake-on-LAN magic packet to a machine with Wake-on-LAN enabled. After sending the packet, it can wait for the machine's SSH server to respond. A progress bar shows the configured wait period, and the script reports whether it received an SSH banner before timing out. The SSH check does not log in to the machine.
 
 ### Usage
 
-Modify `BROADCAST` and `SYSTEM` at the top of the script with the broadcast address of your network. (EX: `192.168.1.255`) and the MAC address of the machine you want to start. Be sure that the MAC address used is the MAC address that is enabled for wake-on-lan and not a secondary network interface. Be sure that wake-on-lan is enabled on the device and it is functioning.
+**This script requires Python 3.14 or later.**
+
+Modify `BROADCAST` and `SYSTEM` at the top of the script with your network's broadcast address (for example, `192.168.1.255`) and the MAC address of the machine you want to start. Use the MAC address of the network interface with Wake-on-LAN enabled, and make sure Wake-on-LAN is enabled on the machine.
+
+Set `FQDN` to the machine's hostname or IP address to wait for SSH after sending the packet. Set it to `None` to skip the SSH check and progress bar. If SSH uses a different port, change `SSH_PORT`. Adjust `SSH_WAIT_TIMEOUT` for the expected boot time, `SSH_RETRY_INTERVAL` for how often to check SSH, and `PROGRESS_REFRESH_INTERVAL` for how often the progress bar updates. The bar uses terminal color when output is sent to a terminal.
+
+``` bash
+python3 Wake-on-LAN.py
+```
 
 ## Generate Repo Statistics Report
 
