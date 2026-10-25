@@ -9,7 +9,8 @@
           The report lists every local branch and its full reachable commit count, the
           active branch, the distinct total across local branches, and the selected
           commits in oldest-first topological order. Development time spans the earliest
-          and latest author dates in the selected report.
+          and latest author dates in the selected report. Git reads the repository
+          from the caller's working directory.
 
    Flags:
     --branch NAME   Include commits reachable from the named local branch,
@@ -36,11 +37,6 @@ from datetime import date, datetime
 from pathlib import Path
 import re
 import subprocess
-
-
-# Anchor every Git command to the script's location. The caller may choose a
-# different working directory to control where the default report is written.
-REPOSITORY: Path = Path(__file__).resolve().parent
 
 
 def main():
@@ -135,12 +131,12 @@ def main():
 
 
 def git(*args):
-  """Run Git in the script's repository and return its standard output."""
+  """Run Git from the caller's working directory and return its output."""
 
   # Capture stderr so failed Git lookups become concise report errors instead
   # of leaving a partial traceback or mixing diagnostics with Git data.
   result = subprocess.run(
-    ['git', *args], cwd=REPOSITORY, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False
+    ['git', *args], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False
   )
 
   if result.returncode:
