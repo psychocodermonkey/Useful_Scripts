@@ -124,6 +124,29 @@ python3 Gen-Repo-Stats.py --branch BRANCH_NAME --commit COMMIT_HASH --output rep
 - `--commit COMMIT_HASH` includes the named commit and its descendants reachable from the selected branch, or from any local branch when `--branch` is omitted. The commit must be reachable from the selected history.
 - `--output PATH` writes the report to the specified path instead of `Commit-History.md`.
 
+## Ghostty Terminfo Export
+
+### File
+
+- [`TermInfo-Export-GhosTTY.py`](TermInfo-Export-GhosTTY.py)
+
+### Description
+
+This script installs the local Ghostty `xterm-ghostty` terminfo definition on one or more remote systems over SSH. It extracts the definition with `infocmp -x`, sends it to each target, runs `tic -x -` as the remote user, and verifies the installation with `infocmp xterm-ghostty`. It does not require `sudo` or install Ghostty on the remote system.
+
+### Usage
+
+The local system needs the `xterm-ghostty` definition and `infocmp`. Each target needs SSH access and `tic`. Targets can be SSH configuration aliases or hostnames; the system's OpenSSH client handles connection settings and authentication.
+
+``` bash
+python3 TermInfo-Export-GhosTTY.py server
+python3 TermInfo-Export-GhosTTY.py server system service
+python3 TermInfo-Export-GhosTTY.py server --verify
+python3 TermInfo-Export-GhosTTY.py server.example.com -i ~/.ssh/server_key -p 21234
+```
+
+By default, the script installs and then verifies each target. Use `--verify` to check existing installations without making changes. Use `-i` or `--identity` to specify an SSH private key file, and `-p` or `--port` to override the SSH port. The script reports results for each target, continues after a failure, and exits with a nonzero status if any requested operation fails.
+
 ---
   Copyright (c) 2026 Andrew Dixon
 
